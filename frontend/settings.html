@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VOLTGRID | Settings, Profile & Account Management</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/consumption.css">
+  <link rel="stylesheet" href="css/graphs.css">
+  <link rel="stylesheet" href="css/billing.css">
+  <link rel="stylesheet" href="css/settings.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+
+  <div class="ambient-glow"></div>
+
+  <!-- Top Dashboard Navbar -->
+  <header class="dash-navbar">
+    <div class="nav-left">
+      <a href="/" class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+          </svg>
+        </div>
+        <span class="brand-name">VOLTGRID</span>
+      </a>
+      <!-- 4 Navigation Tabs -->
+      <nav class="nav-tabs">
+        <a href="/consumption" class="nav-tab">⚡ Overview</a>
+        <a href="/graphs" class="nav-tab">📊 Graphical View</a>
+        <a href="/billing" class="nav-tab">💳 Billing & Tariff</a>
+        <a href="/settings" class="nav-tab active">⚙️ Settings</a>
+      </nav>
+    </div>
+
+    <div class="nav-center">
+      <div class="grid-telemetry-badge">
+        <span class="pulse-dot"></span>
+        <span>Grid Frequency: <strong>50.02 Hz</strong></span>
+        <span>•</span>
+        <span>Nominal Voltage: <strong>230.4 V</strong></span>
+      </div>
+    </div>
+
+    <div class="nav-right">
+      <div class="consumer-profile">
+        <div class="consumer-avatar">⚡</div>
+        <div class="consumer-meta">
+          <span class="consumer-name" id="displayConsumerName">Loading...</span>
+          <span class="consumer-id" id="displayConsumerId">ID: CNS-849201</span>
+        </div>
+        <select id="consumerSelector" class="consumer-select-dropdown" title="Switch Consumer">
+          <option value="CNS-849201">Alex Mercer (CNS-849201)</option>
+          <option value="CNS-102948">Diya Patel (CNS-102948)</option>
+        </select>
+      </div>
+      <a href="/" class="btn-logout" title="Sign Out">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16 17 21 12 16 7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+        Sign Out
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Settings Container -->
+  <main class="dash-container">
+
+    <!-- Page Title Header -->
+    <div class="section-header">
+      <div>
+        <h1 class="dash-title">Account Settings & Security Portal</h1>
+        <p class="dash-subtitle">Manage consumer credentials, linked smart meter connections, and security authentication</p>
+      </div>
+      <div class="settings-quick-info">
+        <span>Active Account: <strong id="quickAccountLabel">CNS-849201 (Primary)</strong></span>
+      </div>
+    </div>
+
+    <!-- SETTINGS TABS NAVIGATION -->
+    <div class="settings-nav-pills">
+      <button class="pill-btn active" data-target="tab-profile">
+        👤 Profile Details
+      </button>
+      <button class="pill-btn" data-target="tab-accounts">
+        🔗 Manage Accounts (<span id="pillAccountsCount">2</span>)
+      </button>
+      <button class="pill-btn" data-target="tab-password">
+        🔒 Reset Password & Security
+      </button>
+    </div>
+
+    <!-- TAB 1: PROFILE DETAILS -->
+    <section id="tab-profile" class="settings-tab-pane active">
+      <div class="settings-card">
+        <div class="card-header-flex">
+          <div>
+            <h2 class="settings-card-title">1. Consumer Profile Information</h2>
+            <p class="settings-card-subtitle">Personal information, registered contact channels, and official billing address</p>
+          </div>
+          <span class="pill-badge cyan-pill">Connection: Verified</span>
+        </div>
+
+        <form id="profileForm" class="settings-form">
+          <div class="form-grid-2">
+            <!-- Consumer ID (Readonly) -->
+            <div class="form-field">
+              <label class="form-label">Consumer Identification Number (CID)</label>
+              <div class="input-lock-wrap">
+                <input type="text" id="inputConsumerId" class="settings-input lock" readonly>
+                <span class="lock-tag">LOCKED</span>
+              </div>
+              <span class="field-hint">Issued by State Electricity Distribution Corporation</span>
+            </div>
+
+            <!-- Full Name -->
+            <div class="form-field">
+              <label class="form-label" for="inputName">Consumer / Account Holder Name</label>
+              <input type="text" id="inputName" class="settings-input" required placeholder="Full Name as on Electricity Bill">
+            </div>
+
+            <!-- Email Address -->
+            <div class="form-field">
+              <label class="form-label" for="inputEmail">Registered Email ID</label>
+              <input type="email" id="inputEmail" class="settings-input" required placeholder="name@domain.com">
+            </div>
+
+            <!-- Phone Number -->
+            <div class="form-field">
+              <label class="form-label" for="inputPhone">Registered Mobile Phone Number</label>
+              <input type="text" id="inputPhone" class="settings-input" required placeholder="+91 98765 43210">
+            </div>
+          </div>
+
+          <!-- Billing Address -->
+          <div class="form-field">
+            <label class="form-label" for="inputAddress">Physical Service & Billing Premises Address</label>
+            <textarea id="inputAddress" class="settings-textarea" rows="3" placeholder="Premises Address for power delivery"></textarea>
+          </div>
+
+          <!-- Technical Grid Specs (Readonly) -->
+          <div class="tech-specs-box">
+            <div class="spec-item">
+              <span class="spec-lbl">Meter Serial Number</span>
+              <strong class="spec-val" id="specMeterNo">MTR-2026-991</strong>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">Sanctioned Load</span>
+              <strong class="spec-val" id="specSanctioned">5.00 kW</strong>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">Tariff Schedule</span>
+              <strong class="spec-val" id="specTariff">LT-1 Residential Domestic</strong>
+            </div>
+            <div class="spec-item">
+              <span class="spec-lbl">Supply Phase</span>
+              <strong class="spec-val" id="specPhase">Single Phase 230V / 50Hz</strong>
+            </div>
+          </div>
+
+          <!-- Notification Toggles -->
+          <div class="notification-prefs-block">
+            <h3 class="subheading-text">Alert & Communication Preferences</h3>
+            <div class="checkbox-grid">
+              <label class="toggle-checkbox">
+                <input type="checkbox" id="checkAlertSms" checked>
+                <span>SMS Alert upon Bill Generation and Payment Acknowledgments</span>
+              </label>
+              <label class="toggle-checkbox">
+                <input type="checkbox" id="checkAlertEmail" checked>
+                <span>Email dispatch of monthly itemized Tax Invoices & PDF statements</span>
+              </label>
+              <label class="toggle-checkbox">
+                <input type="checkbox" id="checkAlertPeak" checked>
+                <span>Peak Load Threshold Warnings (Notify if usage exceeds 85% of Sanctioned Load)</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-action-row">
+            <button type="submit" id="btnSaveProfile" class="btn-primary-settings">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                <polyline points="7 3 7 8 15 8"></polyline>
+              </svg>
+              Save Profile Changes
+            </button>
+            <span id="profileStatusMsg" class="status-msg"></span>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- TAB 2: MANAGE ACCOUNTS -->
+    <section id="tab-accounts" class="settings-tab-pane">
+      <div class="settings-card">
+        <div class="card-header-flex">
+          <div>
+            <h2 class="settings-card-title">2. Manage Linked Connections & Meters</h2>
+            <p class="settings-card-subtitle">Manage multiple electric connections (home, commercial shop, workshop) under a single login</p>
+          </div>
+          <button id="btnOpenLinkModal" class="btn-add-account">
+            + Link New Connection
+          </button>
+        </div>
+
+        <!-- Accounts Grid List -->
+        <div id="linkedAccountsList" class="accounts-grid">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: RESET PASSWORD & SECURITY -->
+    <section id="tab-password" class="settings-tab-pane">
+      <div class="settings-grid-2">
+        
+        <!-- Reset Password Form Card -->
+        <div class="settings-card">
+          <div class="card-header-flex">
+            <div>
+              <h2 class="settings-card-title">3. Reset Portal Password</h2>
+              <p class="settings-card-subtitle">Update your account login password to ensure security</p>
+            </div>
+            <span class="pill-badge orange-pill">Security</span>
+          </div>
+
+          <form id="passwordForm" class="settings-form">
+            <!-- Current Password -->
+            <div class="form-field">
+              <label class="form-label" for="currentPassword">Current Password</label>
+              <div class="input-pw-wrap">
+                <input type="password" id="currentPassword" class="settings-input" required placeholder="Enter current password">
+                <button type="button" class="pw-eye" onclick="toggleFieldPw('currentPassword')">👁️</button>
+              </div>
+            </div>
+
+            <!-- New Password -->
+            <div class="form-field">
+              <label class="form-label" for="newPassword">New Password</label>
+              <div class="input-pw-wrap">
+                <input type="password" id="newPassword" class="settings-input" required placeholder="At least 6 characters">
+                <button type="button" class="pw-eye" onclick="toggleFieldPw('newPassword')">👁️</button>
+              </div>
+              <!-- Live Password Strength Meter -->
+              <div class="pw-strength-bar">
+                <div id="strengthBarFill" class="strength-fill"></div>
+              </div>
+              <span class="field-hint" id="strengthText">Password Strength: Minimum 6 characters</span>
+            </div>
+
+            <!-- Confirm New Password -->
+            <div class="form-field">
+              <label class="form-label" for="confirmPassword">Confirm New Password</label>
+              <div class="input-pw-wrap">
+                <input type="password" id="confirmPassword" class="settings-input" required placeholder="Re-type new password">
+                <button type="button" class="pw-eye" onclick="toggleFieldPw('confirmPassword')">👁️</button>
+              </div>
+            </div>
+
+            <div class="form-action-row">
+              <button type="submit" id="btnResetPassword" class="btn-primary-settings orange-glow">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                Reset Password
+              </button>
+              <span id="passwordStatusMsg" class="status-msg"></span>
+            </div>
+          </form>
+        </div>
+
+        <!-- Security Status & Sessions Card -->
+        <div class="settings-card security-card">
+          <h3 class="settings-card-title">Security Status & Login Activity</h3>
+          <p class="settings-card-subtitle">Active sessions and account authentication metadata</p>
+
+          <div class="security-status-box">
+            <div class="sec-item">
+              <span>Two-Factor Authentication (2FA)</span>
+              <span class="badge-status normal">Disabled (Optional)</span>
+            </div>
+            <div class="sec-item">
+              <span>Last Password Changed</span>
+              <strong id="secLastChanged">10-Aug-2026</strong>
+            </div>
+          </div>
+
+          <div class="active-session-box">
+            <span class="box-lbl">CURRENT ACTIVE SESSION</span>
+            <div class="session-details">
+              <div class="session-icon">💻</div>
+              <div>
+                <strong id="sessionDevice">Chrome on Windows 11</strong>
+                <div class="session-ip" id="sessionIp">IP: 127.0.0.1 (Localhost) • Connected</div>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-logout-all" onclick="alert('All remote device tokens have been invalidated.');">
+            🚪 Terminate All Other Device Sessions
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL: LINK NEW ACCOUNT -->
+  <div id="linkAccountModal" class="modal-overlay">
+    <div class="modal-box" style="max-width: 480px;">
+      <button class="modal-close" id="closeLinkModal">&times;</button>
+      <h3 class="modal-title">Link New Electricity Meter</h3>
+      <p class="modal-desc">Add a secondary residential, commercial, or agricultural meter connection to this login</p>
+
+      <form id="linkAccountForm" style="display: flex; flex-direction: column; gap: 14px;">
+        <div class="form-field">
+          <label class="form-label" for="linkConsumerId">Consumer ID to Link</label>
+          <input type="text" id="linkConsumerId" class="settings-input" placeholder="e.g. CNS-102948" required>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="linkMeterNo">Smart Meter Serial Number</label>
+          <input type="text" id="linkMeterNo" class="settings-input" placeholder="e.g. MTR-2026-442" required>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="linkNickname">Account Nickname / Tag</label>
+          <input type="text" id="linkNickname" class="settings-input" placeholder="e.g. Commercial Office / Workshop" required>
+        </div>
+
+        <button type="submit" class="btn-submit" style="margin-top: 10px;">
+          + Confirm & Link Account
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/settings.js"></script>
+</body>
+</html>

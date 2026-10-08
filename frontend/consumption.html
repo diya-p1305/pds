@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VOLTGRID | Electricity Consumption Analytics</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/consumption.css">
+  <link rel="stylesheet" href="css/graphs.css">
+  <!-- Chart.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+
+  <!-- Ambient Electric City Background Overlay -->
+  <div class="ambient-glow"></div>
+
+  <!-- Dashboard Top Header Bar -->
+  <header class="dash-navbar">
+    <div class="nav-left">
+      <a href="/" class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+          </svg>
+        </div>
+        <span class="brand-name">VOLTGRID</span>
+      </a>
+      <nav class="nav-tabs">
+        <a href="/consumption" class="nav-tab active">⚡ Overview</a>
+        <a href="/graphs" class="nav-tab">📊 Graphical View</a>
+        <a href="/billing" class="nav-tab">💳 Billing & Tariff</a>
+        <a href="/settings" class="nav-tab">⚙️ Settings</a>
+      </nav>
+    </div>
+
+    <div class="nav-center">
+      <div class="grid-telemetry-badge">
+        <span class="pulse-dot"></span>
+        <span>Grid Frequency: <strong>50.02 Hz</strong></span>
+        <span>•</span>
+        <span>Nominal Voltage: <strong>230.4 V</strong></span>
+      </div>
+    </div>
+
+    <div class="nav-right">
+      <div class="consumer-profile">
+        <div class="consumer-avatar">⚡</div>
+        <div class="consumer-meta">
+          <span class="consumer-name" id="displayConsumerName">Loading...</span>
+          <span class="consumer-id" id="displayConsumerId">ID: CNS-849201</span>
+        </div>
+        <select id="consumerSelector" class="consumer-select-dropdown" title="Switch Consumer">
+          <option value="CNS-849201">Alex Mercer (CNS-849201)</option>
+          <option value="CNS-102948">Diya Patel (CNS-102948)</option>
+        </select>
+      </div>
+      <a href="/" class="btn-logout" title="Sign Out">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16 17 21 12 16 7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+        Sign Out
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Dashboard Content Container -->
+  <main class="dash-container">
+    
+    <!-- Section Title & Month Filter -->
+    <div class="section-header">
+      <div>
+        <h1 class="dash-title">Electricity Consumption Overview</h1>
+        <p class="dash-subtitle">Verified meter telemetry and analytical breakdown for <strong id="currentMonthLabel">September 2026</strong></p>
+      </div>
+      <div class="meter-info-tag">
+        <span>Smart Meter: <strong id="displayMeterNo">MTR-2026-991</strong></span>
+        <span>•</span>
+        <span>Tariff Rate: <strong id="displayTariff">₹6.50 / kWh</strong></span>
+      </div>
+    </div>
+
+    <!-- PRIMARY REQUIRED CREDENTIALS GRID (5 CARDS) -->
+    <section class="credentials-grid">
+      
+      <!-- 1. Daily Consumption Card -->
+      <div class="kpi-card card-daily">
+        <div class="card-header">
+          <span class="card-label">Daily Consumption</span>
+          <div class="icon-bubble cyan">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+          </div>
+        </div>
+        <div class="card-main-val">
+          <span class="val-number" id="valDaily">--</span>
+          <span class="val-unit">kWh</span>
+        </div>
+        <div class="card-footer">
+          <span class="tag-status green" id="diffDaily">+3.2% vs yesterday</span>
+          <span class="sub-text">Cost: <strong id="costDaily">₹166.40</strong></span>
+        </div>
+      </div>
+
+      <!-- 2. Average Consumption of Month Card -->
+      <div class="kpi-card card-avg">
+        <div class="card-header">
+          <span class="card-label">Average Consumption (Month)</span>
+          <div class="icon-bubble blue">
+            <svg viewBox="0 0 24 24"><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>
+          </div>
+        </div>
+        <div class="card-main-val">
+          <span class="val-number" id="valAvg">--</span>
+          <span class="val-unit">kWh/day</span>
+        </div>
+        <div class="card-footer">
+          <span class="sub-text">Recorded: <strong id="totalRecordedKwh">396.1 kWh</strong></span>
+          <span class="sub-text" id="daysCounted">15 days logged</span>
+        </div>
+      </div>
+
+      <!-- 3. Maximum Consumption Card -->
+      <div class="kpi-card card-max">
+        <div class="card-header">
+          <span class="card-label">Maximum Consumption</span>
+          <div class="icon-bubble orange">
+            <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+          </div>
+        </div>
+        <div class="card-main-val">
+          <span class="val-number" id="valMax">--</span>
+          <span class="val-unit">kWh</span>
+        </div>
+        <div class="card-footer">
+          <span class="tag-status orange">Peak Load: <strong id="maxPeakKw">4.9 kW</strong></span>
+          <span class="sub-text" id="maxDate">On 2026-09-08</span>
+        </div>
+      </div>
+
+      <!-- 4. Minimum Consumption Card -->
+      <div class="kpi-card card-min">
+        <div class="card-header">
+          <span class="card-label">Minimum Consumption</span>
+          <div class="icon-bubble emerald">
+            <svg viewBox="0 0 24 24"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg>
+          </div>
+        </div>
+        <div class="card-main-val">
+          <span class="val-number" id="valMin">--</span>
+          <span class="val-unit">kWh</span>
+        </div>
+        <div class="card-footer">
+          <span class="tag-status green">Base Load: <strong id="minBaseKw">0.38 kW</strong></span>
+          <span class="sub-text" id="minDate">On 2026-09-03</span>
+        </div>
+      </div>
+
+      <!-- 5. Estimated Consumption Card -->
+      <div class="kpi-card card-estimated">
+        <div class="card-header">
+          <span class="card-label">Estimated Consumption</span>
+          <div class="icon-bubble purple">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+          </div>
+        </div>
+        <div class="card-main-val">
+          <span class="val-number" id="valEstimated">--</span>
+          <span class="val-unit">kWh</span>
+        </div>
+        <div class="card-footer">
+          <span class="sub-text">Est. Bill: <strong class="glow-text" id="estBill">₹5,368.35</strong></span>
+          <span class="sub-text" id="remainingDays">15 days remaining</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- VISUALIZATION CHARTS GRID -->
+    <section class="charts-section">
+      <!-- Monthly Consumption History Bar & Threshold Chart -->
+      <div class="chart-panel">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">Month-to-Date Daily Consumption Trend</h2>
+            <p class="panel-subtitle">Daily kWh compared against Average, Peak Max, and Eco Min baselines</p>
+          </div>
+          <div class="chart-legend-pills">
+            <span class="pill-badge max-pill">Max Peak</span>
+            <span class="pill-badge avg-pill">Average</span>
+            <span class="pill-badge min-pill">Min Eco</span>
+          </div>
+        </div>
+        <div class="canvas-container">
+          <canvas id="monthlyChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Today's 24-Hour Active Power Telemetry Curve -->
+      <div class="chart-panel">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">Today's Real-Time Active Power Profile</h2>
+            <p class="panel-subtitle">24-hour demand curve (kW) and load fluctuation</p>
+          </div>
+          <span class="live-tag">⚡ Live Telemetry</span>
+        </div>
+        <div class="canvas-container">
+          <canvas id="hourlyChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- HISTORICAL LOGS TABLE -->
+    <section class="table-section">
+      <div class="panel-header">
+        <div>
+          <h2 class="panel-title">Daily Electricity Consumption Log</h2>
+          <p class="panel-subtitle">Audit trail of daily meter readings and energy billing breakdown</p>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="consumption-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Total Units (kWh)</th>
+              <th>Peak Load (kW)</th>
+              <th>Standby Base (kW)</th>
+              <th>Daily Cost</th>
+              <th>Consumption Status</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- Populated dynamically via JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/consumption.js"></script>
+</body>
+</html>

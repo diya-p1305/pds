@@ -1,0 +1,1007 @@
+/* Electricity Billing & Payments Styling */
+
+.billing-action-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  border: none;
+}
+
+.btn-generate {
+  background: rgba(0, 240, 255, 0.12);
+  color: var(--electric-cyan);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+}
+.btn-generate:hover {
+  background: rgba(0, 240, 255, 0.25);
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-pay {
+  background: linear-gradient(135deg, #00f0ff 0%, #0088ff 100%);
+  color: #05080f;
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.4);
+}
+.btn-pay:hover {
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.7);
+  transform: translateY(-2px);
+}
+
+.btn-history {
+  background: rgba(148, 163, 184, 0.12);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.btn-history:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Hero Grid */
+.billing-hero-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 22px;
+}
+
+.billing-card {
+  background: rgba(14, 23, 42, 0.82);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(0, 240, 255, 0.18);
+  border-radius: 20px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.main-bill-card {
+  border-top: 4px solid var(--electric-cyan);
+}
+
+.bill-card-badge {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+.bill-card-badge.PENDING {
+  background: rgba(249, 115, 22, 0.15);
+  color: #fb923c;
+  border: 1px solid rgba(249, 115, 22, 0.4);
+}
+.bill-card-badge.PAID {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.estimated-amount-block {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.amount-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.amount-sublabel {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.hero-amount {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -1px;
+  text-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
+}
+
+.amount-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.amount-note strong {
+  color: var(--electric-cyan);
+}
+
+.accrued-split-box {
+  display: flex;
+  align-items: center;
+  background: rgba(10, 16, 30, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 16px 20px;
+  gap: 20px;
+}
+
+.split-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.split-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.split-val {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.split-sub {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.split-divider {
+  width: 1px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.bill-meta-footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 16px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.bill-meta-footer strong {
+  color: #fff;
+  margin-left: 4px;
+}
+
+/* Quick Pay Card */
+.quick-pay-card {
+  border-top: 4px solid var(--electric-green);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pay-summary-box {
+  background: rgba(10, 16, 30, 0.8);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 14px 0;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.pay-due-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.pay-amount-highlight {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--electric-green);
+}
+
+.pay-methods-preview {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.method-chip {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: var(--text-secondary);
+}
+.method-chip.selected {
+  border-color: var(--electric-green);
+  color: var(--electric-green);
+  background: rgba(0, 255, 136, 0.1);
+}
+
+.btn-pay-hero {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--electric-green) 0%, #00b4d8 100%);
+  color: #05080f;
+  font-size: 0.98rem;
+  font-weight: 800;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 16px rgba(0, 255, 136, 0.4);
+  transition: var(--transition-smooth);
+}
+.btn-pay-hero:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(0, 255, 136, 0.7);
+}
+
+.secure-notice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+
+/* Slabs Breakdown Grid */
+.per-unit-section {
+  background: rgba(14, 23, 42, 0.82);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(0, 240, 255, 0.14);
+  border-radius: 20px;
+  padding: 28px;
+}
+
+.slabs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 20px 0 30px;
+}
+
+.slab-card {
+  background: rgba(10, 16, 30, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.slab-card:hover {
+  transform: translateY(-3px);
+}
+
+.slab-1 { border-top: 3px solid #10b981; }
+.slab-2 { border-top: 3px solid #00f0ff; }
+.slab-3 { border-top: 3px solid #f97316; }
+.surcharges-card { border-top: 3px solid #a855f7; }
+
+.slab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.slab-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.slab-rate {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #fff;
+}
+.slab-rate small {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.slab-range {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--electric-cyan);
+  margin: 6px 0;
+}
+
+.slab-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.slab-stat {
+  margin-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 8px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+.slab-stat strong {
+  color: #fff;
+}
+
+.surcharge-list {
+  list-style: none;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+.surcharge-list strong {
+  color: #c084fc;
+}
+
+/* Interactive Calculator Tool */
+.unit-calculator-tool {
+  background: rgba(7, 11, 20, 0.8);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 16px;
+  padding: 22px;
+}
+
+.calc-header {
+  margin-bottom: 16px;
+}
+
+.calc-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+}
+.calc-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.calc-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: center;
+}
+
+.slider-wrapper label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+.slider-wrapper strong {
+  color: var(--electric-cyan);
+  font-size: 1.15rem;
+}
+
+.electric-slider {
+  width: 100%;
+  accent-color: var(--electric-cyan);
+  cursor: pointer;
+  height: 6px;
+}
+
+.calc-result-box {
+  background: rgba(15, 23, 42, 0.8);
+  border-radius: 12px;
+  padding: 16px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.calc-result-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+.calc-result-item strong {
+  color: #fff;
+}
+
+.calc-result-item.total {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  padding-top: 6px;
+}
+.glow-total {
+  color: var(--electric-cyan);
+  font-size: 1.4rem;
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
+
+.calc-result-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 4px 0;
+}
+
+.effective-badge {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: right;
+  margin-top: 4px;
+}
+.effective-badge strong {
+  color: var(--electric-green);
+}
+
+/* Modals */
+/* Modals Base */
+.invoice-modal-box {
+  max-width: 860px;
+  max-height: 94vh;
+  overflow-y: auto;
+  background: #060a14;
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  padding: 18px;
+  border-radius: 14px;
+}
+
+.modal-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.toolbar-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--electric-cyan);
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-print-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  color: #000000;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+.btn-print-action:hover {
+  background: #e2e8f0;
+}
+
+.btn-close-modal {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+}
+.btn-close-modal:hover {
+  color: #ffffff;
+}
+
+/* =========================================================
+   BLACK & WHITE A4 PRINTABLE INVOICE SHEET (210mm x 297mm)
+   ========================================================= */
+.invoice-a4-sheet {
+  background: #ffffff !important;
+  color: #000000 !important;
+  width: 100%;
+  max-width: 794px; /* Standard A4 width on 96dpi screen */
+  min-height: 1020px;
+  aspect-ratio: 210 / 297;
+  margin: 0 auto;
+  padding: 24px 28px;
+  border: 2px solid #000000;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* All text inside A4 sheet forced to high-contrast ink black */
+.invoice-a4-sheet * {
+  color: #000000 !important;
+  background-color: transparent;
+  box-sizing: border-box;
+}
+
+.inv-bw-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 6px;
+}
+
+.utility-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.utility-subtitle {
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.utility-meta {
+  font-size: 0.68rem;
+  margin-bottom: 2px;
+}
+
+.utility-address {
+  font-size: 0.68rem;
+}
+
+.header-right {
+  text-align: right;
+}
+
+.tax-invoice-badge {
+  display: inline-block;
+  border: 2px solid #000000;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.inv-helpline, .inv-website {
+  font-size: 0.7rem;
+}
+
+.inv-bw-rule-thick {
+  height: 2.5px;
+  background: #000000 !important;
+  margin: 8px 0;
+}
+
+/* Consumer Particulars 2-Column Box */
+.inv-bw-grid-box {
+  border: 1px solid #000000;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.grid-box-col {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 0.74rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.grid-box-col.border-left {
+  border-left: 1px solid #000000;
+}
+
+.box-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.box-lbl {
+  font-weight: 600;
+  font-size: 0.7rem;
+}
+
+.underline-bold {
+  text-decoration: underline;
+  font-weight: 800;
+}
+
+/* Black & White Tables */
+.inv-bw-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.74rem;
+  margin-bottom: 10px;
+  border: 1px solid #000000;
+}
+
+.inv-bw-table th {
+  border: 1px solid #000000;
+  padding: 5px 8px;
+  background: #f0f0f0 !important;
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-align: left;
+}
+
+.inv-bw-table td {
+  border: 1px solid #000000;
+  padding: 5px 8px;
+}
+
+.assessment-table th {
+  text-align: left;
+}
+.assessment-table td:nth-child(3),
+.assessment-table td:nth-child(4),
+.assessment-table td:nth-child(5) {
+  text-align: right;
+}
+
+.inv-bw-grand-total td {
+  border-top: 2px solid #000000 !important;
+  border-bottom: 2px solid #000000 !important;
+  background: #f7f7f7 !important;
+  font-size: 0.85rem;
+}
+
+.inv-bw-delayed-row td {
+  font-size: 0.7rem;
+  font-style: italic;
+  background: #ffffff !important;
+}
+
+/* Payment QR Code Section on Invoice */
+.inv-payment-qr-container {
+  border: 2px solid #000000;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+  background: #ffffff !important;
+}
+
+.qr-code-box {
+  border: 1px solid #000000;
+  padding: 6px;
+  background: #ffffff !important;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.qr-svg-holder {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-svg-holder svg {
+  width: 100%;
+  height: 100%;
+}
+
+.qr-caption {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+
+.qr-instructions-col {
+  flex: 1;
+}
+
+.qr-inst-title {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+  text-decoration: underline;
+}
+
+.qr-inst-list {
+  list-style: square inside;
+  font-size: 0.68rem;
+  line-height: 1.35;
+  margin-bottom: 4px;
+}
+
+.digital-rebate-notice {
+  font-size: 0.65rem;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.qr-stamp-col {
+  width: 160px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.barcode-container {
+  margin-bottom: 6px;
+}
+
+.barcode-bars {
+  font-family: monospace;
+  font-size: 1.1rem;
+  letter-spacing: 1.5px;
+  line-height: 1;
+}
+
+.barcode-text {
+  font-family: monospace;
+  font-size: 0.65rem;
+}
+
+.stamp-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stamp-circle {
+  width: 68px;
+  height: 68px;
+  border: 1.5px dashed #000000;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
+  font-size: 0.68rem;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.signatory-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+
+/* Bottom Perforated Receipt Section */
+.perforated-tear-line {
+  border-top: 1px dashed #000000;
+  text-align: center;
+  margin: 6px 0;
+  position: relative;
+}
+
+.perforated-tear-line span {
+  display: inline-block;
+  background: #ffffff !important;
+  padding: 0 8px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  position: relative;
+  top: -8px;
+}
+
+.counter-foil-box {
+  border: 1px solid #000000;
+  padding: 6px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+}
+
+/* =========================================================
+   PRINT MEDIA RULES FOR CRISP A4 PRINTING
+   ========================================================= */
+@page {
+  size: A4 portrait;
+  margin: 8mm;
+}
+
+@media print {
+  /* Hide all background and dashboard content */
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  /* Show only the invoice modal and A4 sheet */
+  #invoiceModal,
+  #invoiceModal * {
+    visibility: visible;
+  }
+
+  #invoiceModal {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    background: #ffffff !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+
+  .invoice-modal-box {
+    max-width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .invoice-a4-sheet {
+    position: relative !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 275mm !important;
+    margin: 0 !important;
+    padding: 6mm 8mm !important;
+    border: 1.5px solid #000000 !important;
+    box-shadow: none !important;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
+
+.btn-print {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+.btn-print:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* Pay Modal */
+.pay-modal-box {
+  max-width: 440px;
+}
+
+.pay-amount-display {
+  background: rgba(10, 16, 30, 0.9);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  margin-bottom: 20px;
+}
+.pay-digits {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--electric-green);
+  text-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+}
+
+.method-selector-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.method-radio {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  color: #fff;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+.method-radio:hover {
+  border-color: var(--electric-cyan);
+}
+.method-radio input {
+  accent-color: var(--electric-cyan);
+}
+
+/* Transactions Modal */
+.txns-modal-box {
+  max-width: 780px;
+}
+.txns-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.txns-table th {
+  color: var(--text-secondary);
+  font-weight: 600;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: left;
+}
+.txns-table td {
+  padding: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+.badge-txn-success {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+  .billing-hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .slabs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .calc-controls {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .slabs-grid {
+    grid-template-columns: 1fr;
+  }
+  .accrued-split-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .split-divider {
+    display: none;
+  }
+}
